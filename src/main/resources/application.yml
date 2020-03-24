@@ -6,7 +6,7 @@ server:
 
 jalgoarena:
   problems:
-    source: ${PROBLEMS_SOURCE:problems.json}
+    source: ${PROBLEMS_SOURCE:demo-problems.json}
   judge:
     classpath: ${JUDGE_CLASSPATH:build/classes/kotlin/main}
 

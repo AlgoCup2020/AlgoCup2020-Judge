@@ -11,8 +11,8 @@ import java.util.concurrent.CopyOnWriteArrayList
 
 @Repository
 open class JsonProblemsRepository(
-        @Value("\${jalgoarena.problems.source:problems.json}")
-        private val jalgoarenaProblemsSource: String = "problems.json"
+        @Value("\${jalgoarena.problems.source:demo-problems.json}")
+        private val jalgoarenaProblemsSource: String = "demo-problems.json"
 ) : ProblemsRepository {
 
     private val problems: CopyOnWriteArrayList<Problem> = CopyOnWriteArrayList()
@@ -38,7 +38,7 @@ open class JsonProblemsRepository(
         val problems: List<Problem> = ArrayList(jacksonObjectMapper().readValue(
                 Resources.toString(Resources.getResource(jalgoarenaProblemsSource), Charsets.UTF_8),
                 Array<Problem>::class.java
-        ).asList())
+        ).asList()) as List<Problem>
 
         this.problems.addAllAbsent(problems)
         this.problemsById.putAll(problems.map {it.id to it})
